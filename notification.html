@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#student-section, #admin-section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#notifications {
+    margin-bottom: 10px;
+}
+</style>
+<body>
+    <div id="student-section">
+        <h2>Borrow a Book</h2>
+        <form id="borrow-form">
+            <label for="book-id">Book ID:</label>
+            <input type="text" id="book-id" name="book-id" required>
+            <button type="submit">Borrow Book</button>
+        </form>
+    </div>
+
+    <div id="admin-section">
+        <h2>Admin Panel</h2>
+        <div id="notifications"></div>
+        <button id="issue-book-button" style="display:none;">Issue Book</button>
+    </div>
+
+    <script>
+        document.getElementById('borrow-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const bookId = document.getElementById('book-id').value;
+    
+    // Send book borrow request to the server
+    fetch('/borrow', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bookId: bookId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            alert('Borrow request sent to admin.');
+        } else {
+            alert('Error sending borrow request.');
+        }
+    });
+});
+
+// Function to periodically check for admin notifications
+function checkForNotifications() {
+    fetch('/notifications')
+    .then(response => response.json())
+    .then(data => {
+        if(data.notifications && data.notifications.length > 0) {
+            const notificationsDiv = document.getElementById('notifications');
+            notificationsDiv.innerHTML = data.notifications.map(notification => `<p>${notification.message}</p>`).join('');
+            document.getElementById('issue-book-button').style.display = 'block';
+        } else {
+            document.getElementById('issue-book-button').style.display = 'none';
+        }
+    });
+}
+
+// Call the function every 5 seconds
+setInterval(checkForNotifications, 5000);
+
+document.getElementById('issue-book-button').addEventListener('click', function() {
+    // Send issue book request to the server
+    fetch('/issue', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: 'issue' }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            alert('Book issued successfully.');
+            document.getElementById('notifications').innerHTML = '';
+            document.getElementById('issue-book-button').style.display = 'none';
+        } else {
+            alert('Error issuing book.');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

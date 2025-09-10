@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .buttons button {
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #555;
+        }
+    </style>
+    <header>
+        <h1>CSE DEPARTMENT LIBRARY</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="logout.html">Logout</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>USN</th>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Date of Issue</th>
+                        <th>Date of Return</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nandan CV</td>
+                        <td>4MC21CS102</td>
+                        <td>1969</td>
+                        <td>Operating system Principles</td>
+                        <td>Abraham Silberschatz</td>
+                        <td>2024-06-10</td>
+                        <td class="return-date"></td>
+                        <td><button onclick="setReturnDate(this)">Returned</button></td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>Nisarga R Kumar</td>
+                        <td>4MC21CS105</td>
+                        <td>2005</td>
+                        <td>Programming the World Wide Web</td>
+                        <td>Robert W.Sebesta</td>
+                        <td>2024-05-13</td>
+                        <td class="return-date"></td>
+                        <td><button onclick="setReturnDate(this)">Returned</button></td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>Prarthana YT</td>
+                        <td>4MC21CS114</td>
+                        <td>1654</td>
+                        <td>Machine Learning</td>
+                        <td>Tom M Mitchell</td>
+                        <td>2024-05-27</td>
+                        <td class="return-date"></td>
+                        <td><button onclick="setReturnDate(this)">Returned</button></td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Rachana HV</td>
+                            <td>4MC21CS119</td>
+                            <td>3498</td>
+                            <td>Operating System</td>
+                            <td>D.M Dhamdhere</td>
+                            <td>2024-05-05</td>
+                            <td class="return-date"></td>
+                            <td><button onclick="setReturnDate(this)">Returned</button></td>
+                        </tr>
+                        <!-- More rows as needed -->
+                    </tbody>
+                    <!-- More rows as needed -->
+                </tbody>
+            </table>
+            <div class="buttons">
+                <button onclick="updateBook()">Update</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        
+        function updateBook() {
+            window.location.href = 'book_update.html';
+        }
+
+        function setReturnDate(button) {
+            const today = new Date().toISOString().split('T')[0];
+            const row = button.closest('tr');
+            const returnDateCell = row.querySelector('.return-date');
+            returnDateCell.textContent = today;
+        }
+    </script>
+</body>
+</html>

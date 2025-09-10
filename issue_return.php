@@ -1,0 +1,211 @@
+
+
+<?php
+		include_once("head.php");
+
+if(isset($_POST['update'])){
+
+@extract($_POST);
+$idate=(new DateTime())->format('Y-m-d');  
+
+if($status=="Requested")
+ $array = $con->query("update book_issued  set status='Issued' , idate='$idate' where id='$id'");
+
+     echo ("<SCRIPT LANGUAGE='JavaScript'>
+					 window.alert(' BOOK Issued changed Successfull  ');
+								</SCRIPT>");
+
+								//window.location.href='dreamlight.html';
+
+
+}
+
+if(isset($_POST['returnbook'])){
+
+@extract($_POST);
+$rdate=(new DateTime())->format('Y-m-d');  
+
+if($status=="Issued")
+ $array = $con->query("update book_issued  set status='Returned' , rdate='$rdate' where id='$id'");
+ $array = $con->query("update books  set count=count+1 where bid='$bid'");
+ $array = $con->query("update reg  set bookid=0 where studentUSN='$studentUSN'");
+
+
+     echo ("<SCRIPT LANGUAGE='JavaScript'>
+					 window.alert(' Book Returned  Successfull  ');
+								</SCRIPT>");
+
+								//window.location.href='dreamlight.html';
+
+
+}
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .buttons button {
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <main>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                       <th>#</th>
+                        <th>USN</th>
+						 <th>Student Name</th>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Date of Issue</th>
+                        <th>Date of Return</th>
+                        <th>Action</th>
+						  <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+ <?php
+  $array = $con->query("select * from book_issued where status='Returned'  order by id desc");
+ 
+ $i=0;
+	    if(mysqli_num_rows($array)!=0)
+		{
+        while ($row = $array->fetch_assoc()) 
+        {   
+			print"<form method='post'  action=''>";
+				
+			
+          $i=$i+1;   ?>
+           <input type="hidden"   name="id" value=<?php print("$row[id]");?>>
+		   <input type="hidden"   name="status" value=<?php print("$row[status]");?>>
+		     <input type="hidden"   name="bid" value=<?php print("$row[bid]");?>>
+			 <input type="hidden"   name="studentUSN" value=<?php print("$row[studentUSN]");?>>
+          <tr align="center">
+            <td><?php echo $i; ?></td>
+		
+            <td align="left"><?php echo $row['studentUSN']; ?></td>
+            <td align="left"><?php echo $row['studentName']; ?></td>
+			<td align="left"><?php echo $row['bid']; ?></td>
+			<td align="left"><?php echo $row['bname']; ?></td>
+			<td align="left"><?php echo $row['aname']; ?></td>
+			<td align="left"><?php echo $row['idate']; ?></td>
+			<td align="left"><?php echo $row['rdate']; ?></td>
+			<td align="left"><?php echo $row['status']; ?></td>
+  <?php
+				if($row['status']=='Requested')
+			{
+		print"<td><div class='buttons'>
+                <button  name='update'>Update</button>
+            </div></td>";
+			}
+else if($row['status']=='Issued')
+	{
+		print"<td> <div class='buttons'>
+                <button name='returnbook' >Return</button>
+            </div></td>";
+			}
+else 
+	print"<td align='left'>Book Returned </td>";
+
+			
+         print"</tr></form>";
+
+		 } 
+		}
+		else
+		echo "<center><font size='3' color='#ff0000'>No Data Found....</font></center>";?>
+			</tbody>
+        </table>
+
+
+           
+        </div>
+    </main>
+    <script>
+        
+
+    </script>
+</body>
+</html>

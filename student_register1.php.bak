@@ -1,0 +1,31 @@
+<?php
+
+include_once("db.php");
+
+
+if(isset($_POST['rsave']))
+	{
+		//print("<h2>sfnaskflksdfsdkflsdklfsdf</h2>");
+   @extract($_POST);
+
+
+
+ $ins=mysqli_query($con,"INSERT INTO `reg` (`studentUSN`, `studentName`, `studentEmail`, `studentPSW`, `bookid`) VALUES ( '$studentUSN', '$studentName', '$studentEmail', '$studentPSW','$bookid')")  or die(mysqli_query());
+			if(!$ins)
+			{
+				$mmsg="<font size='' color='#ff0000'><strong>Stud Reg  Details un sucessfully...</strong></font>";
+				
+			}
+			else
+		{
+				   echo ("<SCRIPT LANGUAGE='JavaScript'>
+					window.alert('$studentName Succesfully Registered ')
+					window.location.href='http://localhost/LMS/Student_login.html';
+					</SCRIPT>");
+
+		}
+	}
+			  
+	}
+?>
+

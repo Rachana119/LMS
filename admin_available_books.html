@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Book Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-width: 100%;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        .book-item {
+            margin-bottom: 20px;
+        }
+        .book-item a {
+            color: #333;
+            text-decoration: none;
+        }
+        .book-item button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .book-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="students_list.html">Home</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Available Books</h2>
+            <div class="book-item">
+                <a href="admin_os.html">Operating System</a>
+                <br>
+                <button onclick="location.href='admin_os.html'">Issue</button>
+            </div>
+            <div class="book-item">
+                <a href="admin_ml.html">Machine Learning</a>
+                <br>
+                <button onclick="location.href='admin_ml.html'">Issue</button>
+            </div>
+            <div class="book-item">
+                <a href="admin_wp.html">Web Programming</a>
+                <br>
+                <button onclick="location.href='admin_wp.html'">Issue</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        // JavaScript code can be added here for additional functionality
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?php
+		include_once("head.php");
+?>
+    <style>
+ .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .buttons button {
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #555;
+        }
+		    </style>
+    <main>
+<form method="post" action="">
+	<label for="book-id">Book Catagaries:</label>
+<select name="cbook1"   required>
+	<option value="OS" >Operating System
+	<option value="ML">Machine Learning
+<option value="WP">Web Programming
+</select>
+ <button type="submit" name="ser">Search Now</button>
+            </form>
+
+<?php
+
+if(isset($_POST['ser']))
+	{
+
+   @extract($_POST);
+     $array = $con->query("select * from books where cbook='$cbook1'");
+	}
+	 else 
+	   $array = $con->query("select * from books  order by id desc");
+
+	
+?>
+        <h1>Book Details is as Follows </h1>
+        <table id="students-table">
+            <thead>
+                <tr>
+				<th>Book Photo</th>
+                    <th>Book id</th>
+                    <th>Book Name</th>
+                    <th>Course</th>
+                    <th>Author</th>
+					<th>Edition</th>
+                    <th>Avaliable Count</th>
+                </tr>
+            </thead>
+            <tbody>
+ <?php
+
+ 
+ $i=0;
+	    if(mysqli_num_rows($array)!=0)
+		{
+        while ($row = $array->fetch_assoc()) 
+        {   
+          $i=$i+1;   ?>
+     
+          <tr align="center">
+            <td align="center"><?php print" <img src='$row[pic]' width='70' height='70' >";?></td>
+		
+            <td align="left"><?php echo $row['bid']; ?></td>
+            
+            <td align="left"><?php echo $row['bname']; ?></td>
+			     <td align="left"><?php echo $row['cbook']; ?></td>
+			<td align="left"><?php echo $row['aname']; ?></td>
+			<td align="left"><?php echo $row['ename']; ?></td>
+			<td align="left"><?php echo $row['count']; ?></td>
+
+         </tr>
+		<?php } 
+		}
+		else
+        
+		echo "<center><font size='3' color='#ff0000'>No Data Found....</font></center>";?>
+			</tbody>
+        </table>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

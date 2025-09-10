@@ -1,0 +1,48 @@
+
+<style>
+#division4{
+	height: 100px;
+	width:  100px;
+	border: 2px solid black;
+	border-radius: 20px;
+	background-color:#ffffff;
+	margin: 30px;
+	padding: 10px 30px;
+}
+</style>
+<?php
+	include_once("head.php");?>
+ <br><br>	
+
+	<div style="margin-top: 75px">
+	<strong>
+	<center><canvas id="myCanvas" align='center' width="700%" height="40%" style="border:0px solid #ffffff;">
+		</canvas></center>
+	
+	<script type="text/javascript">
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "32px Verdana";
+// Create gradient
+var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+gradient.addColorStop("0.1", "black");  <!-- magenta -->
+gradient.addColorStop("0.5", "black");
+gradient.addColorStop("0.3", "black");
+// Fill with gradient
+ctx.fillStyle = gradient;
+ctx.fillText('Welcome to CSE Department Library', 10, 30);
+</script>
+
+		<p style="font-family: '32px Verdana'; font-size: 30px ; text-align: center;"></p>
+	</div>
+	<div style="margin-down: 50px">
+	
+	</div>
+
+
+		<script type="text/javascript">
+  $(document).ready(function(){$(".rightAccount").click(function(){$(".account").fadeToggle();});});
+</script>
+	
+</body>
+</html>

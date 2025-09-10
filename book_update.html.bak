@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib Book Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+
+    header {
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 1rem;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 400px;
+    }
+
+    .form-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-container input[type="text"],
+    .form-container textarea,
+    .form-container input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+  .  select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .form-container textarea {
+        resize: vertical;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .form-container button:hover {
+        background-color: #555;
+    }
+
+    .book-count {
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+</style>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="students_list.html">Home</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            
+            <h2>Lib Book Update Details</h2>
+            <form>
+                <label for="book-id">Book ID:</label>
+                <input type="text" id="book-id" name="bookid" required>
+
+				 <label for="book-id">Book Catagaries:</label>
+
+<select name="cbook"  required>
+	<option value="OS" selected>Operating System
+	<option value="ML">Machin Learning
+<option value="WP">Web Programming
+	
+</select>
+
+
+
+                <label for="book-name">Book Name:</label>
+                <input type="text" id="book-name" name="bname" required>
+
+                <label for="author-name">Author Name:</label>
+                <input type="text" id="author-name" name="aname" required>
+
+                <label for="edition">Edition:</label>
+                <input type="text" id="edition" name="ename" required>
+
+                <label for="Number of books available">Number of books available :</label>
+                <input type="text" id="Number of books available" name="num" required>
+
+                <label for="photo">Book Photo:</label>
+                <input type="file" id="photo" name="pic" accept="image/*">
+
+                <button type="submit">Update Book</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

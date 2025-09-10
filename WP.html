@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .book-container {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 150px;
+            margin: 10px;
+        }
+        
+        .book-photo {
+            max-width: 80%;
+            border-radius: 8%;
+        }
+        
+        .book-info {
+            margin-top: 1rem;
+        }
+        
+        .book-info h2 {
+            margin: 0.5rem 0;
+        }
+        
+        .book-info p {
+            margin: 0.5rem 0;
+        }
+        
+        .buy-button {
+            margin-top: 1rem;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .buy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <header>
+        <h1>CSE DEPARTMENT LIBRARY</h1>
+        <nav>
+            <ul>
+                <li><a href="Available_books.html">Home</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="book-container" data-index="0">
+            <img src="wpimg1.jpg" alt="Book Photo" class="book-photo">
+            <div class="book-info">
+                <h2 class="book-name">Programming the World Wide Web </h2>
+                <p class="book-id"><strong>Book id:</strong>1969</p>
+                <p class="book-author"><strong>Author:</strong>Robert W.Sebesta</p>
+                <p class="book-edition"><strong>Edition:</strong>8th Edition</p>
+                <p class="book-count"><strong>Count:</strong> <span class="count">10</span></p>
+                <button class="buy-button">Borrow</button>
+                <div class="flag">Flag: 0</div>
+            </div>
+        </div>
+        
+        <!-- Repeat for other books -->
+        <div class="book-container" data-index="1">
+            <img src="wpimg2.jpg" alt="Book Photo" class="book-photo">
+            <div class="book-info">
+                <h2 class="book-name">Internet and World Wide Wed How to program</h2>
+                <p class="book-id"><strong>Book id:</strong>1969</p>
+                <p class="book-author"><strong>Author:</strong>Deitel H.M</p>
+                <p class="book-edition"><strong>Edition:</strong>4th Edition</p>
+                <p class="book-count"><strong>Count:</strong> <span class="count">8</span></p>
+                <button class="buy-button">Borrow</button>
+                <div class="flag">Flag: 0</div>
+            </div>
+        </div>
+        
+        <div class="book-container" data-index="2">
+            <img src="wpimg3.jpg" alt="Book Photo" class="book-photo">
+            <div class="book-info">
+                <h2 class="book-name">Fundamentals of Web Development</h2>
+                <p class="book-id"><strong>Book id:</strong>1969</p>
+                <p class="book-author"><strong>Author:</strong>Saikat Dutt</p>
+                <p class="book-edition"><strong>Edition:</strong> 2nd Edition</p>
+                <p class="book-count"><strong>Count:</strong> <span class="count">15</span></p>
+                <button class="buy-button">Borrow</button>
+                <div class="flag">Flag: 0</div>
+            </div>
+        </div>
+
+        <div class="book-container" data-index="3">
+            <img src="wpimg4.jpg" alt="Book Photo" class="book-photo">
+            <div class="book-info">
+                <h2 class="book-name">Internet Technology and Web Design</h2>
+                <p class="book-id"><strong>Book id:</strong>1969</p>
+                <p class="book-author"><strong>Author:</strong>ISRD group</p>
+                <p class="book-edition"><strong>Edition:</strong>1st Edition</p>
+                <p class="book-count"><strong>Count:</strong> <span class="count">12</span></p>
+                <button class="buy-button">Borrow</button>
+                <div class="flag">Flag: 0</div>
+            </div>
+        </div>
+    </main>
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+            let hasBook = false;
+
+            document.querySelectorAll(".buy-button").forEach(button => {
+                button.addEventListener("click", () => {
+                    const bookContainer = button.closest(".book-container");
+                    const flagDiv = bookContainer.querySelector(".flag");
+                    const countSpan = bookContainer.querySelector(".count");
+                    let count = parseInt(countSpan.textContent, 10);
+
+                    if (!hasBook) {
+                        if (count > 0) {
+                            count--;
+                            countSpan.textContent = count;
+                            hasBook = true;
+                            alert("You have successfully borrowed this book.");
+                            flagDiv.textContent = "Flag: 1";
+                        } else {
+                            alert("This book is out of stock.");
+                            flagDiv.textContent = "Flag: 0";
+                        }
+                    } else {
+                        alert("You cannot borrow another book. Please return the current one first.");
+                        flagDiv.textContent = "Flag: 0";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

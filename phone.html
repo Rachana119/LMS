@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Validation</title>
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Phone Number Validation</h2>
+    <form id="phoneForm">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="+91XXXXXXXXXX" required>
+        <span class="error" id="error-message">Invalid phone number. The valid format is +91 followed by 10 digits.</span>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('phoneForm').addEventListener('submit', function(event) {
+            var phoneInput = document.getElementById('phone').value;
+            var errorMessage = document.getElementById('error-message');
+            var phonePattern = /^\+91\d{10}$/;
+
+            if (!phonePattern.test(phoneInput)) {
+                errorMessage.style.display = 'inline';
+                event.preventDefault(); // Prevent form submission
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

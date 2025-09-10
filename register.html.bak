@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: white;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            margin-top: 120px; /* Adjust for fixed header */
+        }
+
+        .form-container {
+            width: 45%;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body  bgcolor=#ffffcc>
+    <header>
+        <h1>Library Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="Student_login.html">Student Login</a></li>
+                <li><a href="Admin_login.html">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<table width="80%" align="Center">
+<tr>
+	<td>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Student Registration</h2>
+            <form method="post"  action="http://localhost/LMS/sreg.php">
+                <div class="form-group">
+                    <label for="studentName">Name:</label>
+                    <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required>
+                </div>
+ 
+                <div class="form-group">
+                    <label for="studentEmail">Email:</label>
+                    <input type="email" id="studentEmail" name="studentEmail" placeholder="Enter your email" required>
+                </div>
+
+				               <div class="form-group">
+                    <label for="studentUSN">USN:</label>
+                    <input type="text" id="studentUSN" name="studentUSN" placeholder="Enter your USN" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentDOB">Password:</label>
+                    <input type="password" id="studentDOB" name="studentPSW"  placeholder="Enter a password" required>
+                </div>
+
+				   <div class="form-group">
+                    <label for="studentCONF">Confirm Password:</label>
+                    <input type="password" id="studentCONF" name="studentCONF" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Register" name="rsave">
+                </div>
+            </form>
+        </div>
+        
+</td>
+</tr>
+</table>
+
+    <script>
+        function validateStudentForm() {
+            var name = document.getElementById('studentName').value;
+            var usn = document.getElementById('studentUSN').value;
+            var email = document.getElementById('studentEmail').value;
+            var dob = document.getElementById('studentPSW').value;
+			var conf = document.getElementById('studentCONF').value;
+
+            if (name === "" || usn === "" || email === "" || dob === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+  if(conf != dob)
+{
+	alert("Password not matching...");
+	return false;
+	}
+	            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            // Set the password field value to the date of birth
+            var password = dob;
+
+            // Simulate form submission and redirect to another page (e.g., "student_dashboard.html")
+            alert("Registration successful! Redirecting to your dashboard...");
+            window.location.href = 'home.html';
+            return false; // Prevent actual form submission for this example
+        }
+
+
+
+
+        function validateAdminForm() {
+            var name = document.getElementById('adminName').value;
+            var id = document.getElementById('adminID').value;
+            var email = document.getElementById('adminEmail').value;
+            var password = document.getElementById('adminPassword').value;
+            var confirmPassword = document.getElementById('adminConfirmPassword').value;
+
+            if (name === "" || id === "" || email === "" || password === "" || confirmPassword === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            // Simulate form submission and redirect to another page (e.g., "admin_dashboard.html")
+            alert("Registration successful! Redirecting to your dashboard...");
+            window.location.href = 'home.html';
+            return false; // Prevent actual form submission for this example
+        }
+    </script>
+
+
+
+
+</body>
+</html>

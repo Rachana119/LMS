@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Students</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <style> 
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+             width: 100%;
+             background-color: #333;
+             color: #fff;
+             padding: 20px;
+             text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+    main {
+        padding: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+    
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    </style>
+    <body>
+    <header>
+        <div class="header">
+            <h2>CSE DEPARTMENT LIBRARY</h2>
+        </div>
+        <nav>
+            <ul>
+               <li><a href="home.html">Home</a></li>
+               <li><a href="logout.html">Logout</a></li>
+               <li><a href="admin_available_books.html">Available books</a></li>
+               <li><a href="issue_return.html">Issue Table</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Registered Students</h1>
+        <table id="students-table">
+            <thead>
+                <tr>
+                    <th>SI Number</th>
+                    <th>Student Name</th>
+                    <th>USN</th>
+                    <th>Email</th>
+                    <th>Flag</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added here by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const students = [
+                { si: 1, name: "Nandan CV ", usn: "4MC21CS102", email: "nandanissac@gmail.com",flag: 0 },
+                { si: 2, name: "Nisarga R Kumar", usn: "4MC21CS105", email: "nisargaravikumar1@gmail.com",flag: 1},
+                { si: 3, name: "Prarthana YT", usn: "4MC21CS114", email: "prarthanaprasad1025@gmail.com",flag: 0 },
+                { si: 4, name: "Rachana HV", usn: "4MC21CS119", email: "rachanahv19@gmail.com",flag: 1 },
+                // Add more student records as needed
+            ];
+    
+            const tableBody = document.querySelector('#students-table tbody');
+
+students.forEach((student, index) => {
+    const row = document.createElement('tr');
+
+    const rowNumberCell = document.createElement('td');
+    rowNumberCell.textContent = index + 1;
+    row.appendChild(rowNumberCell);
+
+    const nameCell = document.createElement('td');
+    nameCell.textContent = student.name;
+    row.appendChild(nameCell);
+
+    const usnCell = document.createElement('td');
+    usnCell.textContent = student.usn;
+    row.appendChild(usnCell);
+
+    const emailCell = document.createElement('td');
+    emailCell.textContent = student.email;
+    row.appendChild(emailCell);
+
+    const flagCell = document.createElement('td');
+    flagCell.textContent = student.flag;
+    row.appendChild(flagCell);
+
+    tableBody.appendChild(row);
+});
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        header {
+            background-color: #333;
+            padding: 20px 0;
+            color: white;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        .logo {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-width: 100%;
+            margin-top: 100px; /* Adjust for fixed header */
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Library Management System</h1>
+        <nav>
+				 <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="Student_login.html">Student login</a></li>
+                <li><a href="Admin_Login.html">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="login-container">
+		<center><img src="admin_log.png" width="100" height="100" border="0" alt=""></center>
+        <h2>Admin Login</h2>
+
+
+        <form method="post"  id="loginForm"  action="http://localhost/LMS/login_check.php">
+            <input type="text"  name="uname" placeholder="Username">
+			<br><br>
+            <input type="password"  name="psw" placeholder="Password">
+						<br><br>
+            <input type="submit"  name="sub_adm">
+        </form>
+
+
+
+        <div class="forgot-password">
+            <a href="forget_password.html"><h5>Forgot Password?</h5></a>
+        </div>
+       
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('Username').value;
+            var password = document.getElementById('password').value;
+
+            // Basic validation
+            if (username === "" || password === "") {
+                alert("Please enter both Username and Password.");
+                return false;
+            }
+
+            // For this example, redirecting to student_table.html after validation
+            window.location.href = 'students_list.html';
+            return false; // Prevent actual form submission for this example
+        }
+    </script>
+</body>
+</html>
